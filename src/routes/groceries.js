@@ -18,8 +18,10 @@ const groceryList = [
 ];
 
 router.use((req, res, next) => {
-  if (req.session.user) next();
-  else res.send(401);
+  console.log("Inside Groceries Auth check Middleeware");
+  console.log(req.user);
+  if (req.user) next();
+  else res.sendStatus(401);
 });
 
 router.get('/', (request, response) => {
