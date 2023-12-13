@@ -8,7 +8,7 @@ The project covers different Nodejs, Express, MongoDB & Passport Topics and impl
 - Middleware
 - Route Parameters
 - Routers
-- Query Parameters
+- Query Parameters 
 - Cookies
 - Sessions
 - Fake Authentication
