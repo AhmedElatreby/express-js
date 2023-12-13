@@ -1,6 +1,9 @@
+require('dotenv').config();
+const DiscordStrategy = require("passport-discord").Strategy;
 const passport = require("passport");
 const DiscordUser = require("../database/schemas/DiscordUser");
-const DiscordStrategy = require("passport-discord").Strategy;
+
+
 
 passport.serializeUser((user, done) => {
     console.log("Serialzing user ....");
@@ -25,8 +28,8 @@ passport.serializeUser((user, done) => {
 passport.use(
   new DiscordStrategy(
     {
-      clientID: "1184266967545286736",
-      clientSecret: "Tb2tEZF2PTx19FSrLhZTod1dG2kYTiMl",
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "http://localhost:3001/api/v1/auth/discord/redirect",
       scope: ["identify"],
     },
