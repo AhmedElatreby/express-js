@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const passport = require("passport")
+const passport = require("passport");
 const User = require("../database/schemas/User");
 const { hashPassword, comparePassword } = require("../utils/helper");
+const { route } = require("./groceries");
 
 const router = Router();
 
@@ -22,9 +23,7 @@ const router = Router();
 //   }
 // });
 
-
-router.post("/login", passport.authenticate("local"))
-
+router.post("/login", passport.authenticate("local"));
 
 router.post("/register", async (request, response) => {
   const { email, password } = request.body;
@@ -48,5 +47,17 @@ router.post("/register", async (request, response) => {
     }
   }
 });
+
+router.get("/discord", passport.authenticate("discord"), (req, res) => {
+  res.sendStatus(200);
+});
+
+router.get(
+  "/discord/redirect",
+  passport.authenticate("discord"),
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
 
 module.exports = router;
